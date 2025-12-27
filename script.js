@@ -11,8 +11,8 @@ const scoreElement = document.querySelector("#score")
 const timeElement = document.querySelector("#time")
 
 // grid block size
-const blockWidth = window.innerWidth < 600 ? 25 : 40
-const blockHeight = window.innerWidth < 600 ? 25 : 40
+const blockWidth = 30
+const blockHeight = 30
 
 let highScore = localStorage.getItem("highScore") || 0
 let score = 0
@@ -161,39 +161,5 @@ addEventListener("keydown", (event) => {
         direction = "down"
     } else if (event.key == "ArrowRight") {
         direction = "right"
-    }
-})
-
-// optimize for mobile user
-
-let touchStartX = 0
-let touchStartY = 0
-
-document.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX
-    touchStartY = e.touches[0].clientY
-})
-
-document.addEventListener("touchend", (e) => {
-    let touchEndX = e.changedTouches[0].clientX
-    let touchEndY = e.changedTouches[0].clientY
-
-    let diffX = touchEndX - touchStartX
-    let diffY = touchEndY - touchStartY
-
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        // Horizontal swipe
-        if (diffX > 0 && direction !== "left") {
-            direction = "right"
-        } else if (diffX < 0 && direction !== "right") {
-            direction = "left"
-        }
-    } else {
-        // Vertical swipe
-        if (diffY > 0 && direction !== "up") {
-            direction = "down"
-        } else if (diffY < 0 && direction !== "down") {
-            direction = "up"
-        }
     }
 })
