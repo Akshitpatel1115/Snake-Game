@@ -163,39 +163,3 @@ addEventListener("keydown", (event) => {
         direction = "right"
     }
 })
-
-// touch control in mobile
-
-let touchStartX = 0
-let touchStartY = 0
-
-document.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX
-    touchStartY = e.touches[0].clientY
-})
-
-document.addEventListener("touchend", (e) => {
-    let touchEndX = e.changedTouches[0].clientX
-    let touchEndY = e.changedTouches[0].clientY
-
-    let diffX = touchEndX - touchStartX
-    let diffY = touchEndY - touchStartY
-
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        // Horizontal swipe
-        if (diffX > 0 && direction !== "left") {
-            direction = "right"
-        } else if (diffX < 0 && direction !== "right") {
-            direction = "left"
-        }
-    } else {
-        // Vertical swipe
-        if (diffY > 0 && direction !== "up") {
-            direction = "down"
-        } else if (diffY < 0 && direction !== "down") {
-            direction = "up"
-        }
-    }
-})
-
-
