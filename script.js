@@ -11,8 +11,8 @@ const scoreElement = document.querySelector("#score")
 const timeElement = document.querySelector("#time")
 
 // grid block size
-const blockWidth = 40
-const blockHeight = 40
+const blockWidth = window.innerWidth < 600 ? 25 : 40
+const blockHeight = window.innerWidth < 600 ? 25 : 40
 
 let highScore = localStorage.getItem("highScore") || 0
 let score = 0
@@ -133,8 +133,12 @@ function restartGame() {
 
     blocks[`${fruit.x}-${fruit.y}`].classList.remove("fruit")
     snake.forEach(segment => {
-        blocks[`${segment.x}-${segment.y}`].classList.remove("fill")
+        const block = blocks[`${segment.x}-${segment.y}`]
+        block.classList.remove("snake-head")
+        block.classList.remove("snake-body")
+        block.classList.remove("snake-tail")
     })
+
     score = 0
     time = `00-00`
     scoreElement.innerText = score
