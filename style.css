@@ -10,6 +10,10 @@ body {
     width: 100%;
 }
 
+body{
+    touch-action: none;
+}
+
 :root {
     /* Background color */
     --bg-primary-color: rgb(12, 12, 12);
@@ -140,3 +144,4 @@ section .infos {
 .modal .game-over {
     display: none;
 }
+
